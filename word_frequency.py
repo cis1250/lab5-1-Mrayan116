@@ -55,8 +55,12 @@ def print_frequencies(words, frequencies):
     for i in range(len(words)):  
         print(words[i] + ":", frequencies[i])  # prints word followed by how many times it appeared
 
+def get_sentence():
+    return input("Enter a sentence: ")  # asks the user to type a sentence and returns it
+
 def main():
     sentence = get_sentence()  # get and validate sentence from the user
     words, frequencies = calculate_frequencies(sentence)  
     print_frequencies(words, frequencies)  # display the results neatly
-main()  
+
+main()
