@@ -15,27 +15,31 @@
 #USED MOLSTY THE SAME COMMENTS FROM LAST CODE BECAUSE THE CODE HAD VERY LITTLE CHANGE
 def user_input():
     while True:
-        user_input = input("Enter the number of terms of the Fibonacci sequence you want: ")  # ask user how many fibonacci terms they want to see, input always comes in as a string
-        if user_input.isdigit() and int(user_input) > 0:  # checks that input only has digits and is greater than zero, making sure the number makes sense for a sequence
-            return int(user_input)  # converts string to integer once valid so it can be used for loops and math
-        print("Please enter a positive integer.")  # gives a clear message when user input isn’t valid so they can fix it
+        user_input = input("Enter the number of terms of the Fibonacci sequence you want: ")  # ask the user how many fibonacci numbers they want to see
+        if user_input.isdigit() and int(user_input) > 0:  # checks if input has only digits and is above zero, meaning it’s valid
+            return int(user_input)  # returns the input converted to an integer once valid
+        print("Please enter a positive integer.")  # tells the user the input is wrong and asks them again
+
 def fibonacci_sequence(terms):
-    a, b = 0, 1  # start from the first two numbers of fibonacci, 0 and 1, which build up all the next numbers
-    sequence = []  # store all fibonacci numbers in a list so they can be printed together later
-    for i in range(terms):  # loops exactly how many times user asked, building the sequence step by step
+    a, b = 0, 1 
+    sequence = []  # list to hold all fibonacci numbers in order
+    for i in range(terms): 
         sequence.append(a)  # adds the current fibonacci number to the list
-        a, b = b, a + b  # updates values where next number becomes the sum of previous two, core logic of fibonacci
-    return sequence  # after loop ends, gives back the complete fibonacci list
-def display_sequence(sequence):
-    print("Fibonacci sequence:")  # prints a small header to make output clear to the user
-    print(*sequence)  # prints all numbers from the list with spaces in between, looks clean and readable
+        a, b = b, a + b  # calculates next number by adding previous two values
+    print("Fibonacci sequence:")  # prints a label before showing the list
+
+    #added the improvments from lab three using the "end" to add spaces between the chracters
+    for num in sequence:  # loop through the list of fibonacci numbers
+        print(num, end=" ")  # print each number followed by a space, stay on the same line
+    print()  
+    return sequence  
+    
 def main():
     while True:
-        num_terms = user_input()  # gets valid input from the user using the function above
-        fib_sequence = fibonacci_sequence(num_terms)  # calls function to create fibonacci numbers based on user’s input
-        display_sequence(fib_sequence)  # sends sequence to print function to display on screen
-        again = input("Do you want to generate another sequence? (yes/no): ").lower()  # asks user if they want to run program again and makes sure answer is lowercase
-        if again != "yes":  # if user does not type yes, program ends gracefully
-            print("Goodbye!")  # prints a short goodbye message so user knows program has finished
-            break  # exits out of the while loop to stop the program
-main()  # starts the main function so everything runs automatically when the program is executed
+        num_terms = user_input()  # gets a valid number of terms from the user
+        fibonacci_sequence(num_terms)  # generates and prints the fibonacci sequence in one function
+        again = input("Do you want to generate another sequence? (yes/no): ").lower()  # asks user if they want to run it again, makes answer lowercase for easy check
+        if again != "yes":  # ends loop if user doesn’t type yes
+            print("Goodbye!")  # prints goodbye message when program ends
+            break  # stops the while loop and exits program
+main() 
